@@ -19,8 +19,8 @@ class Programa:
     def nome(self, novo_nome):
         self._nome = novo_nome.title()
 
-    def imprime(self):
-        print(f'Nome: {self.nome} - {self.ano} - {self.likes} likes')
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.ano} - {self.likes} likes'
 
 
 class Filme(Programa):
@@ -28,8 +28,8 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
-    def imprime(self):
-        print(f'Nome: {self.nome} - {self.ano} - {self.duracao} min - {self.likes} likes')
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.ano} - {self.duracao} min - {self.likes} likes'
 
 
 class Serie(Programa):
@@ -37,20 +37,39 @@ class Serie(Programa):
         super().__init__(nome, ano)
         self.temporadas = temporadas
 
-    def imprime(self):
-        print(f'Nome: {self.nome} - {self.ano} - {self.temporadas} temporadas - {self.likes} likes')
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.ano} - {self.temporadas} temporadas - {self.likes} likes'
+
+
+class Playlist(list):
+    def __init__(self, nome, programas):
+        self.nome = nome
+        super().__init__(programas)
+
+    def tamanho(self):
+        return len(self.programas)
 
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 atlanta = Serie('atlanta', 2018, 2)
-vingadores.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
+tmep = Filme('Todo mundo em pânico', 1999, 100)
+demolidor = Serie('Demolidor', 2016, 2)
 
+vingadores.dar_likes()
+tmep.dar_likes()
+demolidor.dar_likes()
+demolidor.dar_likes()
 atlanta.dar_likes()
 atlanta.dar_likes()
+atlanta.dar_likes()
 
-filmes_e_series = [vingadores, atlanta]
+filmes_e_series = [vingadores, atlanta, demolidor, tmep]
 
-for programa in filmes_e_series:
-    programa.imprime()
+playlist_fim_de_semana = Playlist('Fim de semana', filmes_e_series)
+
+print(f'Tamanho do playlist: {len(playlist_fim_de_semana)}')
+
+for programa in playlist_fim_de_semana.programas:
+    print(programa)
+
+print(demolidor in playlist_fim_de_semana)
