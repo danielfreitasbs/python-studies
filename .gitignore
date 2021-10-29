@@ -115,3 +115,6 @@ dmypy.json
 Python OO/.idea/vcs.xml
 Python OO/.idea/oo.iml
 Python OO/.idea/misc.xml
+extrator-url/.idea/vcs.xml
+
+*/.idea/*
